@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tambahan agar scroll halus ketika klik 'Eksplorasi Jadwal' */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Font Style untuk judul yang lebih mewah */
+h1, h2, h3 {
+  font-family: 'Times New Roman', serif; /* Atau gunakan font Google 'Playfair Display' jika sudah diimport */
+}

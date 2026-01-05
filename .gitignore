@@ -1,0 +1,24 @@
+# Modul library (Sangat besar, jangan diupload)
+node_modules/
+
+# Data rahasia Firebase Anda
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Folder hasil build Next.js
+.next/
+out/
+build/
+
+# Log error sistem
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
