@@ -46,7 +46,7 @@ export default function ClusterDashboard() {
         ...doc.data(),
         // Konversi Timestamp ke Date Object agar bisa disort
         createdAt: doc.data().createdAt?.toDate ? doc.data().createdAt.toDate() : new Date()
-      }));
+      })); 
 
       // SORTING DILAKUKAN DI SINI (JAVASCRIPT)
       // Dari yang terbaru ke terlama

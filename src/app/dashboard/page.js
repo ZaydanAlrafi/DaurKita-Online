@@ -1,8 +1,10 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+// 1. TAMBAHKAN IMPORT SUSPENSE DISINI
+import { useState, useEffect, Suspense } from 'react'; 
 import Link from 'next/link';
+
 // --- FIREBASE IMPORTS ---
 import { db } from "@/lib/firebase"; 
 import { collection, query, where, onSnapshot, addDoc, getDocs, orderBy } from "firebase/firestore";
@@ -63,7 +65,8 @@ const articlesData = {
   }
 };
 
-export default function UserDashboardContent() {
+// 2. HAPUS "export default" DARI SINI. CUKUP "function" SAJA.
+function UserDashboardContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -265,7 +268,6 @@ export default function UserDashboardContent() {
       <section className="py-24 px-6 md:px-12 bg-[#0E2923] relative border-t border-white/5">
         <div className="max-w-7xl mx-auto flex flex-col gap-12">
             
-            {/* CONTAINER FLEX: Kiri Form, Kanan/Bawah List */}
             <div className="flex flex-col lg:flex-row gap-12">
                 
                 {/* KOLOM KIRI: TULIS LAPORAN */}
@@ -288,7 +290,7 @@ export default function UserDashboardContent() {
                     </div>
                 </div>
 
-                {/* KOLOM KANAN: PANTAU STATUS (FITUR BARU) */}
+                {/* KOLOM KANAN: PANTAU STATUS */}
                 <div className="lg:w-1/2 flex flex-col">
                      <div className="mb-10 lg:mt-10">
                         <span className="text-[#CFB089] text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Tracking System</span>
@@ -325,7 +327,6 @@ export default function UserDashboardContent() {
                                             </span>
                                             <span className="text-[10px] text-gray-500">{formatDate(item.createdAt)}</span>
                                         </div>
-                                        {/* FONT DIPERBAIKI SESUAI PERMINTAAN */}
                                         <p className="text-gray-300 text-sm leading-relaxed font-serif italic line-clamp-2 mb-2">"{item.description}"</p>
                                         
                                         {item.adminResponse && (
@@ -368,5 +369,14 @@ export default function UserDashboardContent() {
 
       <footer className="py-10 text-center bg-[#091f17] border-t border-white/5"><p className="text-gray-600 text-[10px] tracking-[0.3em] uppercase">&copy; 2025 Daur Kita Premium.</p></footer>
     </main>
+  );
+}
+
+// 3. INI BAGIAN UTAMANYA. EXPORT DEFAULT DISINI.
+export default function UserDashboard() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0E2923] flex items-center justify-center text-[#CFB089]">Loading Dashboard...</div>}>
+      <UserDashboardContent />
+    </Suspense>
   );
 }
